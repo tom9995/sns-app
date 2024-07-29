@@ -33,4 +33,10 @@ export const authRepository = {
       userName: data.session.user?.user_metadata.name,
     };
   },
+
+  async signOut() {
+    const { error } = await supabaseClient.auth.signOut();
+    if (error != null) throw new Error(error.message);
+    return true;
+  },
 };
